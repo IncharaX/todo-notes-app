@@ -1,17 +1,11 @@
 import { useState } from "react";
 
-function NoteCard({
-  note,
-  deleteNote,
-  editNote,
-}) {
+function NoteCard({ note, deleteNote, editNote }) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const [title, setTitle] =
-    useState(note.title);
+  const [title, setTitle] = useState(note.title);
 
-  const [content, setContent] =
-    useState(note.content);
+  const [content, setContent] = useState(note.content);
 
   const handleSave = () => {
     editNote({
@@ -27,23 +21,14 @@ function NoteCard({
     <div className="note-card">
       {isEditing ? (
         <>
-          <input
-            value={title}
-            onChange={(e) =>
-              setTitle(e.target.value)
-            }
-          />
+          <input value={title} onChange={(e) => setTitle(e.target.value)} />
 
           <textarea
             value={content}
-            onChange={(e) =>
-              setContent(e.target.value)
-            }
+            onChange={(e) => setContent(e.target.value)}
           />
 
-          <button onClick={handleSave}>
-            Save
-          </button>
+          <button onClick={handleSave}>Save</button>
         </>
       ) : (
         <>
@@ -51,21 +36,12 @@ function NoteCard({
 
           <p>{note.content}</p>
 
-          <div className="note-actions">
-            <button
-              onClick={() =>
-                setIsEditing(true)
-              }
-            >
-              Edit
-            </button>
+          <small className="timestamp">{note.createdAt}</small>
 
-            <button
-              className="delete-btn"
-              onClick={() =>
-                deleteNote(note.id)
-              }
-            >
+          <div className="note-actions">
+            <button onClick={() => setIsEditing(true)}>Edit</button>
+
+            <button className="delete-btn" onClick={() => deleteNote(note.id)}>
               Delete
             </button>
           </div>

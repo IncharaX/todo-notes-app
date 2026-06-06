@@ -19,7 +19,8 @@ function NotesList({
   )}
 
       {notes.length === 0 ? (
-        <p>No notes available.</p>
+        <p>No notes yet.
+  Create your first note above.</p>
       ) : (
         notes.map((note) => (
           <NoteCard

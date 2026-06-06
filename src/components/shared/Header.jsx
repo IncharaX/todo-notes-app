@@ -4,6 +4,7 @@ function Header() {
       <h1>ToDo & Notes App</h1>
       <p>Manage your tasks and notes efficiently</p>
     </header>
+    
   );
 }
 

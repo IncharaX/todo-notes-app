@@ -115,8 +115,80 @@ textarea {
   display: flex;
   gap: 10px;
 }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
 
-@media(max-width:768px) {
+.stat-card {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+}
+
+.stat-card h3 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.todo-item,
+.note-card {
+  transition: all 0.3s ease;
+}
+
+.todo-item:hover,
+.note-card:hover {
+  transform: translateY(-2px);
+}
+
+.timestamp,
+small {
+  display: block;
+  margin-top: 5px;
+  color: #888;
+  font-size: 12px;
+}
+
+.header h1 {
+  color: #2563eb;
+}
+
+.badge {
+  display: inline-block;
+  background: #22c55e;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .grid {
     grid-template-columns: 1fr;
   }

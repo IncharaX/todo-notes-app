@@ -20,7 +20,8 @@ function TodoList({
   )}
 
       {todos.length === 0 ? (
-        <p>No tasks added yet.</p>
+        <p>No tasks yet.
+      Add your first task above.</p>
       ) : (
         <ul className="todo-list">
           {todos.map((todo) => (
