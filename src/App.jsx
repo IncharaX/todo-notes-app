@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "./components/shared/Header";
 
@@ -9,8 +9,35 @@ import NoteForm from "./components/notes/NoteForm";
 import NotesList from "./components/notes/NotesList";
 
 function App() {
-  const [todos, setTodos] = useState([]);
- const [notes, setNotes] = useState([]);
+  const [todos, setTodos] = useState(() => {
+  const savedTodos =
+    localStorage.getItem("todos");
+
+  return savedTodos
+    ? JSON.parse(savedTodos)
+    : [];
+});
+useEffect(() => {
+    localStorage.setItem(
+      "todos",
+      JSON.stringify(todos)
+    );
+  }, [todos]);
+
+ const [notes, setNotes] = useState(() => {
+  const savedNotes =
+    localStorage.getItem("notes");
+
+  return savedNotes
+    ? JSON.parse(savedNotes)
+    : [];
+});
+  useEffect(() => {
+    localStorage.setItem(
+      "notes",
+      JSON.stringify(notes)
+    );
+  }, [notes]);
 
   const addTodo = (taskText) => {
     const newTodo = {
@@ -63,6 +90,14 @@ const editNote = (updatedNote) => {
     )
   );
 };
+
+const clearAllTodos = () => {
+  setTodos([]);
+};
+
+const clearAllNotes = () => {
+  setNotes([]);
+};
   return (
     <div className="container">
       <Header />
@@ -75,6 +110,7 @@ const editNote = (updatedNote) => {
             todos={todos}
             toggleTodo={toggleTodo}
             deleteTodo={deleteTodo}
+            clearAllTodos={clearAllTodos}
           />
         </section>
 
@@ -84,6 +120,7 @@ const editNote = (updatedNote) => {
           notes={notes}
           deleteNote={deleteNote}
           editNote={editNote}
+          clearAllNotes={clearAllNotes}
           />
         </section>
       </div>
