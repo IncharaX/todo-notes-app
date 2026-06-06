@@ -10,6 +10,7 @@ import NotesList from "./components/notes/NotesList";
 
 function App() {
   const [todos, setTodos] = useState([]);
+ const [notes, setNotes] = useState([]);
 
   const addTodo = (taskText) => {
     const newTodo = {
@@ -37,6 +38,31 @@ function App() {
     );
   };
 
+  const addNote = (title, content) => {
+  const newNote = {
+    id: Date.now(),
+    title,
+    content,
+  };
+
+  setNotes((prev) => [...prev, newNote]);
+};
+
+const deleteNote = (id) => {
+  setNotes((prev) =>
+    prev.filter((note) => note.id !== id)
+  );
+};
+
+const editNote = (updatedNote) => {
+  setNotes((prev) =>
+    prev.map((note) =>
+      note.id === updatedNote.id
+        ? updatedNote
+        : note
+    )
+  );
+};
   return (
     <div className="container">
       <Header />
@@ -53,8 +79,12 @@ function App() {
         </section>
 
         <section className="card">
-          <NoteForm />
-          <NotesList />
+         <NoteForm addNote={addNote} />
+          <NotesList
+          notes={notes}
+          deleteNote={deleteNote}
+          editNote={editNote}
+          />
         </section>
       </div>
     </div>
