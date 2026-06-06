@@ -129,7 +129,11 @@ function App() {
           />
         </section>
       </div>
+      <footer className="footer">
+  <p>Built with React.js</p>
+</footer>
     </div>
+    
   );
 }
 
